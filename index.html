@@ -21,6 +21,49 @@
           rgba(255, 255, 255, 0.018) 4px
         );
       }
+
+      @keyframes xp-fill {
+        from {
+          width: 0%;
+        }
+
+        to {
+          width: 72%;
+        }
+      }
+
+      .xp-fill {
+        animation: xp-fill 1.2s ease-out forwards;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .xp-fill {
+          animation: none;
+        }
+      }
+
+      @keyframes hero-enter {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-enter {
+        animation: hero-enter 0.6s ease-out both;
+        animation-delay: var(--hero-delay, 0ms);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .xp-fill,
+        .hero-enter {
+          animation: none;
+        }
+      }
     </style>
   </head>
   <body class="relative bg-[#0a0a14] text-slate-100 antialiased">
@@ -54,19 +97,21 @@
           </div>
 
           <div class="mt-2 h-2 border-slate-700 bg-slate-900">
-            <div class="h-full w-[72%] bg-yellow-400"></div>
+            <div class="xp-fill h-full bg-yellow-400"></div>
           </div>
         </div>
         <div class="max-w-5xl mx-auto px-6">
           <div
-            class="mb-6 flex items-center gap-4 text-sm font-semibold uppercase tracking-widest"
+            class="hero-enter mb-6 flex items-center gap-4 text-sm font-semibold uppercase tracking-widest"
+            style="--hero-delay: 0ms"
           >
             <span class="text-cyan-400">PLAYER 1</span>
             <span class="text-slate-400">•</span>
             <span class="text-yellow-400">LEVEL 01</span>
           </div>
           <h1
-            class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-[0.04em] text-white drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+            class="hero-enter text-5xl sm:text-6xl lg:text-7xl font-bold tracking-[0.04em] text-white drop-shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+            style="--hero-delay: 100ms"
           >
             AMBER TROTTIER
           </h1>
@@ -79,26 +124,24 @@
               class="mb-4 inline-flex w-fit items-center border border-red-400/40 bg-red-400/5 px-3 py-1"
             >
               <span
-                class="text-xs font-bold uppercase tracking-widest text-red-400"
+                class="hero-enter text-xs font-bold uppercase tracking-widest text-red-400"
+                style="--hero-delay: 200ms"
               >
                 Current Quest
               </span>
             </div>
 
-            <p class="mt-2 text-xl font-semibold text-white">
+            <p
+              class="hero-enter mt-2 text-xl font-semibold text-white"
+              style="--hero-delay: 200ms"
+            >
               Join the Corporate Tools team.
             </p>
-
-            <p class="mt-2 text-sm leading-6 text-slate-400">
-              Always learning. Always building.
-            </p>
           </div>
-          <p class="mt-7 text-xl sm:text-2xl font-medium text-teal-300">
-            Front-End Developer · Always learning. Always building.
-          </p>
 
           <div
-            class="mt-10 max-w-2xl space-y-4 text-lg leading-8 text-slate-300"
+            class="hero-enter mt-10 max-w-2xl space-y-4 text-lg leading-8 text-slate-300"
+            style="--hero-delay: 300ms"
           >
             <p>
               Corporate Tools asked for a cover letter. As someone applying to
@@ -108,10 +151,16 @@
           </div>
           <a
             href="#about"
-            class="mt-10 inline-flex items-center gap-3 border-2 border-cyan-400 px-6 py-3 text-sm font-bold uppercase tracking-widest text-cyan-400 transition-all duration-200 hover:bg-cyan-400 hover:text-slate-950"
+            class="group hero-enter mt-10 inline-flex items-center gap-3 border-2 border-cyan-400 px-6 py-3 text-sm font-bold uppercase tracking-widest text-cyan-400 transition-all duration-200 hover:bg-cyan-400 hover:text-slate-950"
+            style="--hero-delay: 400ms"
           >
             Press Start
-            <span aria-hidden="true">»</span>
+            <span
+              class="inline-block transition-transform duration-200 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              »
+            </span>
           </a>
         </div>
       </section>
